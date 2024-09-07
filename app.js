@@ -1,13 +1,16 @@
 const express = require('express');
+const cors = require('cors');
 const voteRoutes = require('./routes/voteRoutes');
 
 // Initialize Express app
 const app = express();
 
-// Middleware to parse JSON request bodies
+app.use(cors({
+  origin: 'http://localhost:3001', 
+}));
+
 app.use(express.json());
 
-// Use the vote routes with a prefix '/api'
 app.use('/api', voteRoutes);
 
 // Set the server to listen on a specific port
@@ -17,5 +20,3 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
-
-
